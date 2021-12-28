@@ -1,10 +1,10 @@
-package com.exemple.dto.output;
+package com.exemple.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-public class RespostaDTO {
+public class ResponseDTO {
 
 	@JsonProperty("Nome")
 	private String name;

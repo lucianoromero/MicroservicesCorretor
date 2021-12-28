@@ -1,4 +1,4 @@
-package com.exemple.dto.input;
+package com.exemple.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

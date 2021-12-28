@@ -4,36 +4,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.exemple.dto.input.CorretorDadosDTO;
-import com.exemple.dto.input.CorretorStatusDTO;
-import com.exemple.dto.output.RespostaDTO;
-import com.exemple.service.connector.DetalhesdoCadastrodoCorretorGetService;
-import com.exemple.service.connector.ServicosdoCorretorGetService;
+import com.exemple.dto.CorretorDadosDTO;
+import com.exemple.dto.CorretorStatusDTO;
+import com.exemple.dto.ResponseDTO;
+import com.exemple.service.connector.DetalhesdoCadastrodoCorretorConnectorService;
+import com.exemple.service.connector.ServicosdoCorretorConnectorService;
 import com.exemple.service.query.exception.EntidadeNaoEncontradaException;
 
 @Service
-public class QueryGetCorretorServices {
+public class QueryGetCorretorService {
 
 	@Autowired
-	DetalhesdoCadastrodoCorretorGetService detalhesdoCadastrodoCorretorService;
+	DetalhesdoCadastrodoCorretorConnectorService detalhesdoCadastrodoCorretorService;
 
 	@Autowired
-	ServicosdoCorretorGetService corretorService;
+	ServicosdoCorretorConnectorService corretorService;
 
-	public ResponseEntity<RespostaDTO> consultarDadosDoCorretor(String document) {
+	public ResponseEntity<ResponseDTO> consultarDadosDoCorretor(String document) {
 		try {
-			CorretorDadosDTO corretorDados = detalhesdoCadastrodoCorretorService
-					.getDetalhesdoCadastrodoCorretor(document);
+			CorretorDadosDTO corretorDados = detalhesdoCadastrodoCorretorService.getDetalhesdoCadastrodoCorretor(document);
 			CorretorStatusDTO corretorStatus = corretorService.getServicosdoCorretorService(corretorDados.getCode());
-			RespostaDTO respostaFron = bindRespostaFron(corretorDados, corretorStatus);
+			ResponseDTO respostaFron = bindRespostaFron(corretorDados, corretorStatus);
 			return ResponseEntity.ok().body(respostaFron);
 		} catch (Exception e) {
 			throw new EntidadeNaoEncontradaException(document);
 		}
 	}
 
-	private RespostaDTO bindRespostaFron(CorretorDadosDTO corretorDados, CorretorStatusDTO corretorStatus) {
-		RespostaDTO respostaFron = new RespostaDTO();
+	private ResponseDTO bindRespostaFron(CorretorDadosDTO corretorDados, CorretorStatusDTO corretorStatus) {
+		ResponseDTO respostaFron = new ResponseDTO();
 		if (corretorStatus.getActive().equals("true")) {
 			respostaFron.setName(corretorDados.getName());
 			respostaFron.setDocument(corretorDados.getDocument());
