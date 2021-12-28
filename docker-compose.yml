@@ -1,0 +1,16 @@
+version: '3.5'
+services:
+# springboot
+  springboot:
+    image: lucianoromero/microservicecorretor:latest
+    ports:
+      - "8080:8080"
+    restart: always  
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - localhostcorretor
+    container_name: microservicecorretor
+
+
+# Networks to be created to facilitate communication between containers
+networks:
+  localhostcorretor:
