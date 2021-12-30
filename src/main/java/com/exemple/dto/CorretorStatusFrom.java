@@ -3,7 +3,7 @@ package com.exemple.dto;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class CorretorStatusFROM {
+public class CorretorStatusFrom {
 
 	@NotNull
 	@NotEmpty

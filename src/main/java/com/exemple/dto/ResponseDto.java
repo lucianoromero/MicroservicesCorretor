@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_NULL)
-public class ResponseDTO {
+public class ResponseDto {
 
 	@JsonProperty("Nome")
 	private String name;

@@ -2,7 +2,7 @@ package com.exemple.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CorretorStatusDTO {
+public class CorretorStatusDto {
 
 	@JsonProperty("code")
 	private String code;
@@ -11,13 +11,13 @@ public class CorretorStatusDTO {
 	@JsonProperty("commissionRate")
 	private String commissionRate;
 
-	public CorretorStatusDTO(String code, String active, String commissionRate) {
+	public CorretorStatusDto(String code, String active, String commissionRate) {
 		this.code = code;
 		this.active = active;
 		this.commissionRate = commissionRate;
 	}
 
-	public CorretorStatusDTO() {
+	public CorretorStatusDto() {
 
 	}
 

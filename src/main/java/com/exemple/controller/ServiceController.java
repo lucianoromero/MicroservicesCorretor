@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exemple.dto.CorretorStatusDTO;
-import com.exemple.dto.CorretorStatusFROM;
-import com.exemple.dto.ResponseDTO;
+import com.exemple.dto.CorretorStatusDto;
+import com.exemple.dto.CorretorStatusFrom;
+import com.exemple.dto.ResponseDto;
 import com.exemple.service.query.QueryGetCorretorService;
 import com.exemple.service.update.UpdateCorretorService;
 
@@ -34,13 +34,13 @@ public class ServiceController {
 
 	@Operation(description = "Consulta Corretor")
 	@GetMapping
-	public ResponseEntity<ResponseDTO> consulta(@RequestParam(value = "document") String document) {
+	public ResponseEntity<ResponseDto> consulta(@RequestParam(value = "document") String document) {
 		return corretorServices.consultarDadosDoCorretor(document);
 	}
 	
 	@Operation(description = "Atualiza Corretor")
 	@PutMapping("/{document}")
-	public ResponseEntity<CorretorStatusDTO> atualizar(@PathVariable String document, @Valid @RequestBody CorretorStatusFROM corretorStatusFROM) {		
+	public ResponseEntity<CorretorStatusDto> atualizar(@PathVariable String document, @Valid @RequestBody CorretorStatusFrom corretorStatusFROM) {		
 		return updateCorretorService.atualizarDadosDoCorretor(document, corretorStatusFROM);
 	}
 }

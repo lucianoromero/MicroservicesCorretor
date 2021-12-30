@@ -32,16 +32,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
-		List<Campo> campos = new ArrayList<>();
+		List<CampoDto> campos = new ArrayList<>();
 
 		for (ObjectError error : ex.getBindingResult().getAllErrors()) {
 			String nome = ((FieldError) error).getField();
 			String mensagem = messageSource.getMessage(error, LocaleContextHolder.getLocale());
 
-			campos.add(new Campo(nome, mensagem));
+			campos.add(new CampoDto(nome, mensagem));
 		}
 
-		Problema problema = new Problema();
+		ProblemaDto problema = new ProblemaDto();
 		problema.setStatus(status.value());
 		problema.setDataHora(OffsetDateTime.now());
 		problema.setTitulo("Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.");
@@ -54,7 +54,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(EntidadeNaoEncontradaException.class)
 	public ResponseEntity<Object> handleEntidadeNaoEncontrada(EntidadeNaoEncontradaException ex, WebRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		Problema problema = new Problema();
+		ProblemaDto problema = new ProblemaDto();
 		problema.setStatus(status.value());
 		problema.setDataHora(OffsetDateTime.now());
 		problema.setTitulo("Corretor nao encontrado: " + ex.getMessage());

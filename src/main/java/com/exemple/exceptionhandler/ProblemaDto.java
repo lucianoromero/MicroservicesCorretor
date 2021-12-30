@@ -7,12 +7,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public class Problema {
+public class ProblemaDto {
 
 	private Integer status;
 	private OffsetDateTime dataHora;
 	private String titulo;
-	private List<Campo> campos;
+	private List<CampoDto> campos;
 
 	public Integer getStatus() {
 		return status;
@@ -38,11 +38,11 @@ public class Problema {
 		this.titulo = titulo;
 	}
 
-	public List<Campo> getCampos() {
+	public List<CampoDto> getCampos() {
 		return campos;
 	}
 
-	public void setCampos(List<Campo> campos) {
+	public void setCampos(List<CampoDto> campos) {
 		this.campos = campos;
 	}
 
