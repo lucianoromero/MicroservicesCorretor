@@ -2,7 +2,7 @@ package com.exemple.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CorretorDadosDTO {
+public class CorretorDadosDto {
 
 	@JsonProperty("name")
 	private String name;
@@ -13,14 +13,14 @@ public class CorretorDadosDTO {
 	@JsonProperty("createDate")
 	private String createDate;
 
-	public CorretorDadosDTO(String name, String document, String code, String createDate) {
+	public CorretorDadosDto(String name, String document, String code, String createDate) {
 		this.name = name;
 		this.document = document;
 		this.code = code;
 		this.createDate = createDate;
 	}
 
-	public CorretorDadosDTO() {
+	public CorretorDadosDto() {
 
 	}
 
