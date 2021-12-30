@@ -1,5 +1,7 @@
 package com.exemple.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exemple.dto.CorretorStatusDTO;
+import com.exemple.dto.CorretorStatusFROM;
 import com.exemple.dto.ResponseDTO;
 import com.exemple.service.query.QueryGetCorretorService;
 import com.exemple.service.update.UpdateCorretorService;
@@ -37,7 +40,7 @@ public class ServiceController {
 	
 	@Operation(description = "Atualiza Corretor")
 	@PutMapping("/{document}")
-	public ResponseEntity<CorretorStatusDTO> atualizar(@PathVariable String document,@RequestBody CorretorStatusDTO corretorStatusDTO) {		
-		return updateCorretorService.consultarDadosDoCorretor(document, corretorStatusDTO);
+	public ResponseEntity<CorretorStatusDTO> atualizar(@PathVariable String document, @Valid @RequestBody CorretorStatusFROM corretorStatusFROM) {		
+		return updateCorretorService.atualizarDadosDoCorretor(document, corretorStatusFROM);
 	}
 }
